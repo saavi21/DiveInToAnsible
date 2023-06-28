@@ -1,0 +1,9 @@
+---
+-
+ hosts: centos1
+ user: root
+ gather_facts: yes
+ tasks:
+   - name: Print gathered facts
+     debug:
+       msg: "{{ ansible_facts }}"

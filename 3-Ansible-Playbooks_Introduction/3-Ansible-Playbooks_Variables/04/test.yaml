@@ -1,0 +1,23 @@
+---
+-
+ hosts: centos1
+ user: root
+ vars:
+   books:
+     - Physics
+     - Chemistry
+     - Mathamatics
+     - Computers
+ tasks:
+   - name: All listed items in the list of dictionary
+     debug:
+       msg: "{{ books }}"
+
+   - name: First list in the book self
+     debug:
+       msg: "{{ books.0 }}"
+
+   - name: Last item from the list
+     debug:
+       msg: "{{ books.3 }}"
+...

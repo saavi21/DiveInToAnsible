@@ -1,0 +1,14 @@
+---
+#ansible centos2 -m setup -a filter="ansible_date_time" |  tee ./output
+- hosts: centos2
+  gather_facts: false
+  tasks:
+    - name: Read output file
+      slurp:
+        src: ./output
+      register: output_file
+
+    - name: Extract date value
+      debug:
+        msg: "{{ output_file['content'] | b64decode | from_json | json_query('ansible_date_time.date') }}"
+

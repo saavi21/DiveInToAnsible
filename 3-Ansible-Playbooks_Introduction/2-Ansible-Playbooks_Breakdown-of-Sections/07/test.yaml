@@ -1,0 +1,29 @@
+---
+-
+ hosts: linux
+ user: root
+   # gather_facts: False
+ vars: 
+   motd_u: "Welcome to Anisble playbook for UBUNTU \n"
+   motd_c: "Welcome to Anisble playbook for CENTOS \n"
+ tasks:
+   - name: MOTD change for for linux machines
+     copy:
+       content: "{{ motd_u }}"
+       dest: /etc/motd
+     notify: MOTD changed
+     when: ansible_distribution == "Ubuntu"
+ 
+   - name: MOTD change for for linux machines
+     copy:
+       content: "{{ motd_c }}"
+       dest: /etc/motd
+     notify: MOTD changed
+     when: ansible_distribution == "CentOS"
+ 
+ handlers:
+   - name: MOTD changed
+     debug:
+       msg: MOTD has been changed  
+
+...

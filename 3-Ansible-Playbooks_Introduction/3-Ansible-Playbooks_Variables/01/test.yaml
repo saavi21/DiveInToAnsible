@@ -1,0 +1,11 @@
+---
+-
+ hosts: centos1
+ user: root
+ vars:
+   key1: value1
+ tasks:
+   - name: Checking the dictionary value
+     debug:
+       msg: "{{ key1 }}"
+...

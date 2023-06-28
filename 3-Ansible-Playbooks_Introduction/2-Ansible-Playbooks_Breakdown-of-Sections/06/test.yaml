@@ -1,0 +1,19 @@
+---
+-
+ hosts: centos
+ user: root
+ gather_facts: False
+ 
+ vars:
+   motd: "This is testing for MOTD file \n"
+ 
+ tasks:
+   - name: Changing MODTD file entry
+     copy:
+       content: "{{ motd }}"
+       dest: /etc/motd
+     notify: HELLO
+ handlers:
+   - name: HELLO
+     debug:
+       msg: "MODTD has been changed ------>>"
